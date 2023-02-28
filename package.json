@@ -1,0 +1,27 @@
+{
+  "name": "react-native-object-view",
+  "version": "1.0.0",
+  "description": "Rendering JSON-object as react-native component. It can be helpful for dev-menu.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KirillTarasenko/react-native-object-view.git"
+  },
+  "keywords": [],
+  "author": "Kirill Tarasenko",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "dependencies": {
+    "lodash": "^4.16.6"
+  },
+  "bugs": {
+    "url": "https://github.com/KirillTarasenko/react-native-object-view/issues"
+  },
+  "homepage": "https://github.com/KirillTarasenko/react-native-object-view#readme"
+}
