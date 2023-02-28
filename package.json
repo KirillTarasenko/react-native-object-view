@@ -2,7 +2,7 @@
   "name": "react-native-object-view",
   "version": "1.0.1",
   "description": "Rendering JSON-object as react-native component. It can be helpful for dev-menu.",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
