@@ -1,6 +1,6 @@
 {
   "name": "react-native-object-view",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Rendering JSON-object as react-native component. It can be helpful for dev-menu.",
   "main": "index.tsx",
   "scripts": {
