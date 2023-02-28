@@ -1,35 +1,43 @@
-import _ from 'lodash';
-import React, { PureComponent } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import _ from "lodash";
+import React, { PureComponent } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const styles = StyleSheet.create({
   booleanStyle: {
-    color: '#1B00D1',
+    color: "#1B00D1",
   },
   keyStyle: {
-    color: '#313A42',
+    color: "#313A42",
   },
   nullStyle: {
-    color: '#818181',
+    color: "#818181",
   },
   numberStyle: {
-    color: '#1B00D1',
+    color: "#1B00D1",
   },
   stringStyle: {
-    color: '#C41A17',
+    color: "#C41A17",
   },
   undefinedStyle: {
-    color: '#818181',
+    color: "#818181",
   },
   valueStyle: {
-    color: '#313A42',
+    color: "#313A42",
   },
 });
 
 const paths: string[] = [];
 
-const generatedInfo = ({ keyName, devObject }: { keyName?: string; devObject: any }) =>
-  `[PATH]: ${paths.join('.')}.${keyName}\n[KEY]: ${keyName}\n[VALUE]: ${JSON.stringify(devObject)}`;
+const generatedInfo = ({
+  keyName,
+  devObject,
+}: {
+  keyName?: string;
+  devObject: any;
+}) =>
+  `[PATH]: ${paths.join(
+    "."
+  )}.${keyName}\n[KEY]: ${keyName}\n[VALUE]: ${JSON.stringify(devObject)}`;
 
 const DEFAULT_INIT_EXPAND_DEPTH = 0;
 const DEFAULT_MARGIN_LEFT = 5;
@@ -51,7 +59,7 @@ type IState = {
 
 export default class DevObjectView extends PureComponent<IProps, IState> {
   static defaultProps = {
-    keyName: 'object',
+    keyName: "object",
     marginLeft: DEFAULT_MARGIN_LEFT,
   };
 
@@ -69,7 +77,7 @@ export default class DevObjectView extends PureComponent<IProps, IState> {
       }
       paths.push(String(keyName));
     }
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
   };
 
   handlePressKey = () => {
@@ -95,13 +103,13 @@ export default class DevObjectView extends PureComponent<IProps, IState> {
       return <Text style={styles.nullStyle}>{String(value)}</Text>;
     }
     switch (typeof value) {
-      case 'string':
+      case "string":
         return <Text style={styles.stringStyle}>{`"${value}"`}</Text>;
-      case 'boolean':
+      case "boolean":
         return <Text style={styles.booleanStyle}>{String(value)}</Text>;
-      case 'number':
+      case "number":
         return <Text style={styles.numberStyle}>{value}</Text>;
-      case 'undefined':
+      case "undefined":
         return <Text style={styles.undefinedStyle}>{String(value)}</Text>;
       default:
         return <Text style={styles.valueStyle}>{String(value)}</Text>;
@@ -110,7 +118,7 @@ export default class DevObjectView extends PureComponent<IProps, IState> {
 
   renderEmptyObjectRow = () => {
     const { keyName, devObject, marginLeft } = this.props;
-    const emptyObjectText = _.isArray(devObject) ? '[]' : '{}';
+    const emptyObjectText = _.isArray(devObject) ? "[]" : "{}";
     return (
       <Text style={{ marginLeft }}>
         <TouchableOpacity onLongPress={this.handlePressKey}>
@@ -144,12 +152,11 @@ export default class DevObjectView extends PureComponent<IProps, IState> {
     if (_.isObject(devObject) && _.isEmpty(devObject)) {
       return this.renderEmptyObjectRow();
     }
+    const autoExpandDepthRemaining = autoExpandDepth - 1;
 
-    if (!isOpen) {
+    if (autoExpandDepthRemaining < 0 && !isOpen) {
       return this.renderClosedObjectRow();
     }
-
-    const autoExpandDepthRemaining = autoExpandDepth - 1;
 
     const subComponents = _.map(devObject, (subValue, subkey) => (
       <DevObjectView
