@@ -11,6 +11,17 @@ Rendering JSON-object as react-native component. It can be helpful for dev-menu.
 
 ## How to use
 
+### Example
+```js
+import DevObjectView from 'react-native-object-view';
+
+...
+<DevObjectView
+        keyName={'root'} // optional
+        devObject={{}} // require: any object
+      />
+```
+
 ### Example use with Alert
 ```js
 import DevObjectView from 'react-native-object-view';
